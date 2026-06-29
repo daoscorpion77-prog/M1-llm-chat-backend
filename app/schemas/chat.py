@@ -1,6 +1,10 @@
-# schemas的作用是规定前端能够传什么
+from pydantic import BaseModel, Field
 
-from pydantic import BaseModel
 
 class ChatRequest(BaseModel):
-    message: str
+    message: str = Field(
+        ...,
+        min_length=1,
+        max_length=4000,
+        description="用户输入的问题"
+    )
